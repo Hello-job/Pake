@@ -77,21 +77,21 @@ document.addEventListener('DOMContentLoaded', function () {
       <div class="switch-container-group">
           <label for="systemNotification">系统消息：</label>
           <div class="ml10">
-                    <div class="switch-container">
+      <div class="switch-container">
           <label for="task">任务：</label>
           <label class="settings-switch">
               <input type="checkbox" id="task" name="task">
               <span class="settings-slider"></span>
           </label>
       </div>
-            <div class="switch-container">
+      <div class="switch-container">
           <label for="calendar">日程：</label>
           <label class="settings-switch">
               <input type="checkbox" id="calendar" name="calendar">
               <span class="settings-slider"></span>
           </label>
       </div>
-            <div class="switch-container">
+      <div class="switch-container">
           <label for="system">系统：</label>
           <label class="settings-switch">
               <input type="checkbox" id="system" name="system">
@@ -105,21 +105,21 @@ document.addEventListener('DOMContentLoaded', function () {
               <span class="settings-slider"></span>
           </label>
       </div>
-            <div class="switch-container">
+      <div class="switch-container">
           <label for="hr">人事 （人员变动等）：</label>
           <label class="settings-switch">
               <input type="checkbox" id="hr" name="hr">
               <span class="settings-slider"></span>
           </label>
       </div>
-            <div class="switch-container">
+      <div class="switch-container">
           <label for="worksheet">工作表 （@成员、工作表删除等）：</label>
           <label class="settings-switch">
               <input type="checkbox" id="worksheet" name="worksheet">
               <span class="settings-slider"></span>
           </label>
       </div>
-            <div class="switch-container">
+      <div class="switch-container">
           <label for="workflow">工作流 (审批、填写、抄送、站内通知等)：</label>
           <label class="settings-switch">
               <input type="checkbox" id="workflow" name="workflow">
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function () {
           </div>
       </div>
       <div class="desc">
-          <label for="messageNotification">实施请联系明道云顾问 罗军, 手机/微信：18917633966</label>
+          <span>实施请联系明道云顾问 罗军, 手机/微信：18917633966</span>
       </div>
       <div class="submit-container">
         <button id='submit-btn' type="submit">保存</button>

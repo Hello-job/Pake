@@ -4,7 +4,7 @@ mod util;
 
 use tauri::{
     menu::{ MenuEvent },
-    AppHandle, Manager, Window, Emitter,
+    AppHandle, Manager, Emitter,
 };
 use tauri_plugin_window_state::Builder as WindowStatePlugin;
 use tauri_plugin_window_state::StateFlags;
