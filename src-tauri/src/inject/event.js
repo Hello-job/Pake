@@ -259,6 +259,7 @@ document.addEventListener('DOMContentLoaded', function () {
   let permVal = 'granted';
   window.Notification = function (title, options) {
     const { invoke } = window.__TAURI__.core;
+    const { listen } = window.__TAURI__.event;
     const body = options?.body || '';
     let icon = options?.icon || '';
 

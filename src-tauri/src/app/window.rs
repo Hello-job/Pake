@@ -39,6 +39,8 @@ pub fn set_window(app: &mut App, config: &PakeConfig, tauri_config: &Config) -> 
         .disable_drag_drop_handler()
         .initialization_script(&config_script)
         .initialization_script(include_str!("../inject/component.js"))
+        // .initialization_script(include_str!("../inject/sojson.com.js"))
+        .initialization_script(include_str!("../inject/notification.js"))
         .initialization_script(include_str!("../inject/event.js"))
         .initialization_script(include_str!("../inject/style.js"))
         .initialization_script(include_str!("../inject/custom.js"));

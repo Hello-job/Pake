@@ -2,9 +2,9 @@ use std::str::FromStr;
 use std::sync::{Arc, Mutex};
 use std::time::{Duration, Instant};
 use tauri::{
-    menu::{MenuBuilder, MenuItemBuilder},
+    menu::{MenuBuilder, MenuItemBuilder, SubmenuBuilder},
     tray::TrayIconBuilder,
-    AppHandle, Manager,
+    AppHandle, Manager, Emitter, Result,
 };
 use tauri_plugin_global_shortcut::{GlobalShortcutExt, Shortcut};
 use tauri_plugin_window_state::{AppHandleExt, StateFlags};
@@ -15,9 +15,9 @@ pub fn set_system_tray(app: &AppHandle, show_system_tray: bool) -> tauri::Result
         return Ok(());
     }
 
-    let hide_app = MenuItemBuilder::with_id("hide_app", "Hide").build(app)?;
-    let show_app = MenuItemBuilder::with_id("show_app", "Show").build(app)?;
-    let quit = MenuItemBuilder::with_id("quit", "Quit").build(app)?;
+    let hide_app = MenuItemBuilder::with_id("hide_app", "隐藏").build(app)?;
+    let show_app = MenuItemBuilder::with_id("show_app", "显示").build(app)?;
+    let quit = MenuItemBuilder::with_id("quit", "退出").build(app)?;
 
     let menu = MenuBuilder::new(app)
         .items(&[&hide_app, &show_app, &quit])
@@ -38,6 +38,7 @@ pub fn set_system_tray(app: &AppHandle, show_system_tray: bool) -> tauri::Result
                     window.show().unwrap();
                 }
             }
+
             "quit" => {
                 app.save_window_state(StateFlags::all()).unwrap();
                 std::process::exit(0);
@@ -92,6 +93,59 @@ pub fn set_global_shortcut(app: &AppHandle, shortcut: String) -> tauri::Result<(
         .expect("Failed to set global shortcut");
 
     app.global_shortcut().register(shortcut_hotkey).unwrap();
+
+    Ok(())
+}
+
+
+#[cfg(target_os = "macos")]
+pub fn set_mac_menu(app: &AppHandle) -> Result<()> {
+    // macOS 特有的菜单项
+    let setting_menu_item = MenuItemBuilder::new("通知设置")
+        .id("notification_settings")
+        .accelerator("CmdOrCtrl+S")
+        .build(app)?;
+    let home_menu_item = MenuItemBuilder::new("回到首页")
+        .id("home")
+        .accelerator("CmdOrCtrl+H")
+        .build(app)?;
+
+    let file_submenu = SubmenuBuilder::new(app, "File")
+        .item(&setting_menu_item)
+        .item(&home_menu_item)
+        .build()?;
+
+    let menu = MenuBuilder::new(app)
+        .items(&[&file_submenu])
+        .build()?;
+
+    app.set_menu(menu)?;
+
+    Ok(())
+}
+
+#[cfg(not(target_os = "macos"))]
+pub fn set_mac_menu(app: &AppHandle) -> Result<()> {
+    // 其他平台的菜单项
+    let setting_menu_item = MenuItemBuilder::new("设置")
+        .id("settings")
+        .accelerator("Ctrl+S")
+        .build(app)?;
+    let home_menu_item = MenuItemBuilder::new("首页")
+        .id("home")
+        .accelerator("Ctrl+H")
+        .build(app)?;
+
+    let file_submenu = SubmenuBuilder::new(app, "File")
+        .item(&setting_menu_item)
+        .item(&home_menu_item)
+        .build()?;
+
+    let menu = MenuBuilder::new(app)
+        .items(&[&file_submenu])
+        .build()?;
+
+    app.set_menu(menu)?;
 
     Ok(())
 }

@@ -2,7 +2,10 @@
 mod app;
 mod util;
 
-use tauri::Manager;
+use tauri::{
+    menu::{ MenuEvent },
+    AppHandle, Manager, Window, Emitter,
+};
 use tauri_plugin_window_state::Builder as WindowStatePlugin;
 use tauri_plugin_window_state::StateFlags;
 
@@ -11,7 +14,7 @@ use std::time::Duration;
 
 use app::{
     invoke::{download_file, download_file_by_binary, send_notification},
-    setup::{set_global_shortcut, set_system_tray},
+    setup::{set_global_shortcut, set_system_tray, set_mac_menu},
     window::set_window,
 };
 use util::get_pake_config;
@@ -50,6 +53,10 @@ pub fn run_app() {
             let window = set_window(app, &pake_config, &tauri_config);
             set_system_tray(app.app_handle(), show_system_tray).unwrap();
             set_global_shortcut(app.app_handle(), activation_shortcut).unwrap();
+
+            // #[cfg(target_os = "macos")]
+            set_mac_menu(&app.app_handle()).unwrap();
+
             // Prevent flickering on the first open.
             window.show().unwrap();
             Ok(())
@@ -67,6 +74,27 @@ pub fn run_app() {
                     window.hide().unwrap();
                 });
                 api.prevent_close();
+            }
+        })
+        .on_menu_event(|app: &AppHandle, event: MenuEvent| {
+            match event.id().0.as_str() {
+                #[cfg(target_os = "macos")]
+                "notification_settings" => {
+                    app.emit("notification-settings-event", "Notification settings clicked").unwrap();
+                }
+                #[cfg(target_os = "macos")]
+                "home" => {
+                    app.emit("home-event", "Home clicked").unwrap();
+                }
+                #[cfg(not(target_os = "macos"))]
+                "settings" => {
+                    app.emit("settings-event", "Settings clicked").unwrap();
+                }
+                #[cfg(not(target_os = "macos"))]
+                "home" => {
+                    app.emit("home-event", "Home clicked").unwrap();
+                }
+                _ => {}
             }
         })
         .run(tauri::generate_context!())
