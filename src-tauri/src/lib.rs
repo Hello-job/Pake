@@ -52,7 +52,7 @@ pub fn run_app() {
             set_global_shortcut(app.app_handle(), activation_shortcut).unwrap();
 
             // #[cfg(target_os = "macos")]
-            set_mac_menu(&app.app_handle()).unwrap();
+            set_mac_menu(app.app_handle()).unwrap();
 
             // Prevent flickering on the first open.
             window.show().unwrap();
