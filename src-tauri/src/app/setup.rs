@@ -97,7 +97,6 @@ pub fn set_global_shortcut(app: &AppHandle, shortcut: String) -> tauri::Result<(
     Ok(())
 }
 
-
 #[cfg(target_os = "macos")]
 pub fn set_mac_menu(app: &AppHandle) -> Result<()> {
     // macOS 特有的菜单项
@@ -115,9 +114,7 @@ pub fn set_mac_menu(app: &AppHandle) -> Result<()> {
         .item(&home_menu_item)
         .build()?;
 
-    let menu = MenuBuilder::new(app)
-        .items(&[&file_submenu])
-        .build()?;
+    let menu = MenuBuilder::new(app).items(&[&file_submenu]).build()?;
 
     app.set_menu(menu)?;
 
@@ -141,9 +138,7 @@ pub fn set_mac_menu(app: &AppHandle) -> Result<()> {
         .item(&home_menu_item)
         .build()?;
 
-    let menu = MenuBuilder::new(app)
-        .items(&[&file_submenu])
-        .build()?;
+    let menu = MenuBuilder::new(app).items(&[&file_submenu]).build()?;
 
     app.set_menu(menu)?;
 

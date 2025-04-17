@@ -2,10 +2,7 @@
 mod app;
 mod util;
 
-use tauri::{
-    menu::{ MenuEvent },
-    AppHandle, Manager, Emitter,
-};
+use tauri::{menu::MenuEvent, AppHandle, Emitter, Manager};
 use tauri_plugin_window_state::Builder as WindowStatePlugin;
 use tauri_plugin_window_state::StateFlags;
 
@@ -14,7 +11,7 @@ use std::time::Duration;
 
 use app::{
     invoke::{download_file, download_file_by_binary, send_notification},
-    setup::{set_global_shortcut, set_system_tray, set_mac_menu},
+    setup::{set_global_shortcut, set_mac_menu, set_system_tray},
     window::set_window,
 };
 use util::get_pake_config;
@@ -76,11 +73,15 @@ pub fn run_app() {
                 api.prevent_close();
             }
         })
-        .on_menu_event(|app: &AppHandle, event: MenuEvent| {
-            match event.id().0.as_str() {
+        .on_menu_event(
+            |app: &AppHandle, event: MenuEvent| match event.id().0.as_str() {
                 #[cfg(target_os = "macos")]
                 "notification_settings" => {
-                    app.emit("notification-settings-event", "Notification settings clicked").unwrap();
+                    app.emit(
+                        "notification-settings-event",
+                        "Notification settings clicked",
+                    )
+                    .unwrap();
                 }
                 #[cfg(target_os = "macos")]
                 "home" => {
@@ -95,8 +96,8 @@ pub fn run_app() {
                     app.emit("home-event", "Home clicked").unwrap();
                 }
                 _ => {}
-            }
-        })
+            },
+        )
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
