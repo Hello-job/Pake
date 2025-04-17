@@ -127,7 +127,6 @@ document.addEventListener('DOMContentLoaded', function () {
           </label>
       </div>
 
-
           </div>
       </div>
       <div class="desc">
