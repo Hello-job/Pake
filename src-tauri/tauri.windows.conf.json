@@ -1,8 +1,8 @@
 {
   "bundle": {
-    "icon": ["png/mingdaoyun_ico.ico", "png/mingdaoyun_ico.ico"],
+    "icon": ["png/mingdaoyun_32.ico", "png/mingdaoyun_256.ico"],
     "active": true,
-    "resources": ["png/mingdaoyun_ico.ico"],
+    "resources": ["png/mingdaoyun_256.ico"],
     "targets": ["msi"],
     "windows": {
       "digestAlgorithm": "sha256",

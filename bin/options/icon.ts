@@ -21,9 +21,9 @@ export async function handleIcon(options: PakeAppOptions) {
   } else {
     logger.warn('✼ No icon given, default in use. For a custom icon, use --icon option.');
     const iconPath = IS_WIN
-      ? 'src-tauri/png/mingdaoyun_ico.ico'
+      ? 'src-tauri/png/mingdaoyun_256.ico'
       : IS_LINUX
-      ? 'src-tauri/png/mingdaoyun_ico.png'
+      ? 'src-tauri/png/mingdaoyun_512.png'
       : 'src-tauri/icons/icon.icns';
     return path.join(npmDirectory, iconPath);
   }
