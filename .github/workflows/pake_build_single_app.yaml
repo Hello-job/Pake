@@ -142,7 +142,7 @@ jobs:
 
       - name: Upload For Single Build
         uses: actions/upload-artifact@v4
-        if: startsWith(github.ref, 'refs/tags/') != true
+        # if: startsWith(github.ref, 'refs/tags/') != true
         with:
           path: 'output/*/*.*'
 
