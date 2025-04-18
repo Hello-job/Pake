@@ -138,7 +138,9 @@ jobs:
 
           npm run tauri build -- --target x86_64-pc-windows-msvc
           New-Item -Path "output\windows" -ItemType Directory
-          Move-Item -Path "src-tauri\target\x86_64-pc-windows-msvc\release\bundle\msi\*.msi" -Destination "output\windows\${{inputs.title}}_x64.msi"
+          $timestamp = Get-Date -Format "yyyyMMddHHmmss"
+          $artifactName = "${{inputs.title}}_x64_${timestamp}.msi"
+          Move-Item -Path "src-tauri\target\x86_64-pc-windows-msvc\release\bundle\msi\*.msi" -Destination "output\windows\$artifactName"
 
       - name: Restore Cargo Lock File (Windows Only)
         if: matrix.os == 'windows-latest'
@@ -166,7 +168,7 @@ jobs:
         with:
           allowUpdates: true
           artifacts: 'output/*/*.*'
-          tag: "v1.0.0"  # 显式指定一个固定的标签
+          tag: "v1.0.0-${{ github.sha }}"
           name: "Build for ${{ inputs.title }} - ${{ github.sha }}"
           body: "Automated build for ${{ inputs.title }} - Commit: ${{ github.sha }}"
           token: ${{ secrets.GITHUB_TOKEN }}
