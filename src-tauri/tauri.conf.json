@@ -1,6 +1,6 @@
 {
   "productName": "明道云通知版",
-  "identifier": "com.pake.weread",
+  "identifier": "com.pake.mingdaoyun",
   "version": "1.0.0",
   "app": {
     "withGlobalTauri": true,

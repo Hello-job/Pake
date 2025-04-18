@@ -2,7 +2,6 @@
   "bundle": {
     "icon": ["icons/mingdaoyun.icns"],
     "active": true,
-    "macOS": {},
     "targets": ["dmg"]
   }
 }
