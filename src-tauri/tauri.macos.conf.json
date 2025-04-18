@@ -2,6 +2,10 @@
   "bundle": {
     "icon": ["icons/mingdaoyun.icns"],
     "active": true,
+    "macOS": {
+      "hardenedRuntime": true,
+      "signingIdentity": "Apple Development: Jun Luo (K2NK2KS2R3)"
+    },
     "targets": ["dmg"]
   }
 }

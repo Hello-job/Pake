@@ -41,6 +41,10 @@ on:
         type: string
         default: 'https://twitter.com/'
 
+    # 新增：提交代码时触发（推送到 main 分支时）
+  push:
+    branches: ['feature/custom-pake']
+
 jobs:
   build_single_app:
     name: ${{ inputs.title }} (${{ matrix.os }})
