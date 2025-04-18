@@ -149,7 +149,7 @@ jobs:
       - name: Upload For Release
         # arg info: https://github.com/ncipollo/release-action#release-action
         uses: ncipollo/release-action@v1
-        if: startsWith(github.ref, 'refs/tags/') == true
+        # if: startsWith(github.ref, 'refs/tags/') == true
         with:
           allowUpdates: true
           artifacts: 'output/*/*.*'
