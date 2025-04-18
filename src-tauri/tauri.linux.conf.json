@@ -1,7 +1,7 @@
 {
   "productName": "we-read",
   "bundle": {
-    "icon": ["png/mingdaoyun_256.png"],
+    "icon": ["png/mingdaoyun_512.png"],
     "active": true,
     "linux": {
       "deb": {
