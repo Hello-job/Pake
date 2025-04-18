@@ -155,4 +155,4 @@ jobs:
           tag: "v1.0.0"  # 显式指定一个固定的标签
           name: "Build for ${{ inputs.title }} - ${{ github.sha }}"
           body: "Automated build for ${{ inputs.title }} - Commit: ${{ github.sha }}"
-          token: ${{ secrets.PAKE_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
