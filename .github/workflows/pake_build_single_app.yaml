@@ -119,9 +119,23 @@ jobs:
           mkdir -p output/macos
           mv src-tauri/target/universal-apple-darwin/release/bundle/dmg/*.dmg output/macos/"${{inputs.title}}".dmg
 
+      - name: Check target Directory
+        if: matrix.os == 'macos-latest'
+        run: |
+          ls -la src-tauri/target/universal-apple-darwin/release/bundle/
+
+      - name: Check Output Directory
+        if: matrix.os == 'macos-latest'
+        run: |
+          ls -la output/macos/
+
       - name: Build for Windows
         if: matrix.os == 'windows-latest'
         run: |
+          if (Test-Path "output\windows") {
+            Remove-Item -Path "output\windows" -Recurse -Force
+          }
+
           npm run tauri build -- --target x86_64-pc-windows-msvc
           New-Item -Path "output\windows" -ItemType Directory
           Move-Item -Path "src-tauri\target\x86_64-pc-windows-msvc\release\bundle\msi\*.msi" -Destination "output\windows\${{inputs.title}}_x64.msi"
