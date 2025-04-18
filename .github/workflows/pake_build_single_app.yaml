@@ -161,6 +161,7 @@ jobs:
       - name: Upload For Single Build
         uses: actions/upload-artifact@v4
         with:
+          name: ${{ inputs.title }}-${{ matrix.os }}-artifact-${{ github.run_id }}
           path: 'output/*/*.*'
 
       - name: Upload For Release
