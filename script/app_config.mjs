@@ -7,12 +7,6 @@ import linuxJson from '../src-tauri/tauri.linux.conf.json' assert { type: 'json'
 import { writeFileSync, existsSync, copyFileSync } from 'fs';
 import os from 'os';
 
-// 设置环境变量的默认值
-if (!process.env.NAME) process.env.NAME = 'mingdaoyun';
-if (!process.env.URL) process.env.URL = 'https://www.mingdao.com';
-if (!process.env.TITLE) process.env.TITLE = 'mingdaoyun';
-if (!process.env.NAME_ZH) process.env.NAME_ZH = '明道云';
-
 const desktopEntry = `[Desktop Entry]
 Encoding=UTF-8
 Categories=Office
