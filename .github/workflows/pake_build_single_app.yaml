@@ -42,11 +42,6 @@ on:
         default: 'https://twitter.com/'
 
 jobs:
-  release:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write  # 允许读写仓库内容
-      issues: write   # 如果需要创建讨论或发布，可能需要此权限
   build_single_app:
     name: ${{ inputs.title }} (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
