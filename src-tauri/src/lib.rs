@@ -2,6 +2,10 @@
 mod app;
 mod util;
 
+#[cfg(target_os = "android")]
+use tauri::{AppHandle, Emitter, Manager};
+
+#[cfg(not(target_os = "android"))]
 use tauri::{menu::MenuEvent, AppHandle, Emitter, Manager};
 use tauri_plugin_window_state::Builder as WindowStatePlugin;
 use tauri_plugin_window_state::StateFlags;

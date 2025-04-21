@@ -4,6 +4,6 @@
     "active": true,
     "macOS": {
     },
-    "targets": ["dmg"]
+    "targets": ["dmg", "android"]
   }
 }
