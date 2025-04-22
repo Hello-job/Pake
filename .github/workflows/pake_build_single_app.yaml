@@ -153,4 +153,4 @@ jobs:
         with:
           allowUpdates: true
           artifacts: 'output/*/*.*'
-          token: ${{ secrets.PAKE_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
