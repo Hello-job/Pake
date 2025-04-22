@@ -28,6 +28,7 @@ jobs:
         name: ${{ fromJson(needs.read_apps_config.outputs.apps_name) }}
         include: ${{ fromJSON(needs.read_apps_config.outputs.apps_config) }}
     uses: ./.github/workflows/pake_build_single_app.yaml
+    secrets: inherit
     with:
       name: ${{ matrix.name }}
       title: ${{ matrix.title }}
