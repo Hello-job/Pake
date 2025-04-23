@@ -3,6 +3,7 @@
     "icon": ["icons/mingdaoyun.icns"],
     "active": true,
     "macOS": {
+      "signingIdentity": "Apple Development: Jun Luo (K2NK2KS2R3)"
     },
     "targets": ["dmg", "app"]
   }
